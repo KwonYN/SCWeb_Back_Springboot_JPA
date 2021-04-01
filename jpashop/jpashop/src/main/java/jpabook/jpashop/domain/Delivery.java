@@ -14,7 +14,7 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery")    // Order 클래스의 delivery에 맵핑됨
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "delivery")    // Order 클래스의 delivery에 맵핑됨
     private Order order;
 
     @Embedded
@@ -22,4 +22,6 @@ public class Delivery {
 
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status; // [READY, COMP]
+
+    // 양양
 }

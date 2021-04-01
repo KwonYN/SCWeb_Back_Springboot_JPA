@@ -11,7 +11,7 @@ import java.util.List;
 @Getter @Setter
 public class Member {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue // Primary Key로 등록
     @Column(name = "member_id")
     private Long id;
     // + 코드에서는 그냥 id라고 해도 클래스가 있고, 객체.id 이런 식으로 접근하기 때문에 안 헷갈림
@@ -24,6 +24,6 @@ public class Member {
 
     @OneToMany(mappedBy = "member") // 연관관계의 주인 아님. Order table에 있는 "member"에 의해 맵핑됨..;
     private List<Order> orders = new ArrayList<>();
-    // + @JoinColumn(~~)와 @xxToxx(mappedBy=~~)는 서로 한 쌍!!
+    // + @JoinColumn(~~)와 @xTox(mappedBy=~~)는 서로 한 쌍!!
     //   이 부분이 FK       이 부분이 맵핑되는 것
 }

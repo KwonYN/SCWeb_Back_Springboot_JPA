@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-@Repository // ComponentScan의 대상이 되는 Annotation 중 하나
+// Test를 위해서 @Component 주석처리;;
+//@Repository // ComponentScan의 대상이 되는 Annotation 중 하나
 public class MemberRepository {
 
     // [java 표준] 모든 것이 Spring Container 위에서 동작할텐데
