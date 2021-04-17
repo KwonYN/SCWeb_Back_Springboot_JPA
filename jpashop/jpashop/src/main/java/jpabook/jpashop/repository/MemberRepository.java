@@ -13,13 +13,14 @@ import java.util.List;
 @Repository // @Component Annotation 붙어 있음 : @ComponentScan 대상 
             // → @SpringBootApplication 붙어있는 클래스 밑에 있는 경로의 모든 @Component를 스캔함! (SpringBean 자동 등록됨)
             //   ( jpabook.jpashop 패키지에 있는 JpashopApplication 클래스 )
-@RequiredArgsConstructor
+@RequiredArgsConstructor// lombok
 public class MemberRepository {
 
     //  @PersistenceContext // JPA Entity Manager를 em에 주입받을 수 있음!
     // Spring Data JPA 사용 시, final 붙이고 + @RequiredArgsConstructor로 Entity Manager 생성자 주입 가능!! → 앞으로 이렇게 쓸 거임!
-    private final EntityManager em; // 아래처럼 factory를 주입받을 수도 있음. 그런데 이렇게는 잘 안씀!
-//    @PersistenceUnit
+    private final EntityManager em;
+
+//    @PersistenceUnit  // Entity Manager Factory 직접 주입받고 싶다면? 그런데 쓸일은 없다고 보면 됨!
 //    private EntityManagerFactory emf;
 
     // 영속성 컨텍스트에 member 저장 → Transaction commit 시점에 DB에 반영됨
@@ -47,7 +48,7 @@ public class MemberRepository {
     public List<Member> findByName(String name) {
         return em.createQuery("select m from Member m where m.name = :name",
                               Member.class)
-                              .setParameter("name", name)
+                              .setParameter("name", name)   // :name 파라미터 바인딩
                               .getResultList();
     }
 }
