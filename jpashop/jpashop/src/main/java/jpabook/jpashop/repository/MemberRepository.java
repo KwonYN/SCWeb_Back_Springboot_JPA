@@ -23,17 +23,23 @@ public class MemberRepository {
 //    @PersistenceUnit  // Entity Manager Factory 직접 주입받고 싶다면? 그런데 쓸일은 없다고 보면 됨!
 //    private EntityManagerFactory emf;
 
-    // 영속성 컨텍스트에 member 저장 → Transaction commit 시점에 DB에 반영됨
+    /**
+     * 회원 저장 : 영속성 컨텍스트에 member 저장 → Transaction commit 시점에 DB에 반영됨
+     */
     public void save(Member member) {
         em.persist(member);
     }
 
-    // Primary Key인 id로 member 조회
+    /**
+     * 회원 조회1(단건) : Primary Key인 id로 member 조회
+     */
     public Member findOne(Long id) {
         return em.find(Member.class, id);
     }
 
-    // 모든 member를 리스트로 반환
+    /**
+     * 회원 조회2 : 모든 member를 리스트로 반환
+     */
     public List<Member> findAll() {
                                    // JPQL : SQL이랑 조금 다름
         return em.createQuery("select m from Member m",
@@ -44,7 +50,9 @@ public class MemberRepository {
             → Entity 객체인 Member를 alias로 m을 주고, 그 m을 select!
     */
 
-    // 특정 name 갖는 member를 리스트로 반환
+    /**
+     * 회원 조회3 : 특정 name 갖는 member를 리스트로 반환
+     */
     public List<Member> findByName(String name) {
         return em.createQuery("select m from Member m where m.name = :name",
                               Member.class)

@@ -13,7 +13,9 @@ public class ItemRepository {
 
     private final EntityManager em;
 
-    // 상품 저장
+    /**
+     * 상품 저장
+     */
     public void save(Item item) {
         if(item.getId() == null) {  // Item.id 값은 Primary Key!
                                     // Item은 JPA에 저장(persist)하기 전까지는 id값이 없다고 함
@@ -22,7 +24,10 @@ public class ItemRepository {
             em.merge(item); // 일단 update 비슷한 거라고 보면 됨!
         }
     }
-    // 상품 조회
+
+    /**
+     * 상품 조회
+     */
     public Item findOne(Long id) {
         return em.find(Item.class, id);
     }
