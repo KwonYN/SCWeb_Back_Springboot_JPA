@@ -14,6 +14,12 @@ spring:
 #        show_sql: true        # stdout으로 출력
         format_sql: true
 
+  thymeleaf:
+#    name: thymeleaf/*
+    prefix: classpath:/templates/
+    suffix: .html
+#    cache: false
+
 logging:
   level:
     org.hibernate.SQL: debug  # JPA과 hibernate가 남기는 SQL을 모두 볼 수 있음(로그로 출력)

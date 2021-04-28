@@ -28,7 +28,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Transactional  // 전체 테스트를 돌린다면, 상품주문 테스트 후에 roll back
+@Transactional  // 전체 테스ㄷ트를 돌린다면, 상품주문 테스트 후에 roll back
                 //                      → 상품주문_재고수량_초과 테스트 후 rollback
                 //                      → 주문취소 테스트 후 rollback이 되야함!
 public class OrderServiceTest {

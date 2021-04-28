@@ -12,6 +12,6 @@ public class HelloController {
         // 데이터(argument)를 View에 넘기는 것 - key: value 관계
         model.addAttribute("data", "hidoyi!!");
         return "hello"; // hello라고 썼지만 (관례상) hello.html이 리턴되는 거라고 함!
-                        //    → ../../resources/temp lates/hello.html이 렌더링 된다고 함!
+                        //    → ../../resources/templates/hello.html이 렌더링 된다고 함!
     }
 }
