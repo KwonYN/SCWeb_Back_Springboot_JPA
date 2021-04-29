@@ -19,6 +19,7 @@
                    th:class="${#fields.hasErrors('name')}? 'form-control fieldError' : 'form-control'">
                 <!-- *은 th:object를 참조한다는 의미, 즉 MemberForm 내의 name 필드 -->
                 <!-- th:field="*{name}" 대신, 그냥 id="name" name="name" 코드 써줘도 됨 -->
+
             <p th:if="${#fields.hasErrors('name')}"
                th:errors="*{name}">Incorrect date</p>
         </div>

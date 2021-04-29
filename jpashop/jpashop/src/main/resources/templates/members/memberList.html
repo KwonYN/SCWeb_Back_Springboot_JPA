@@ -14,6 +14,7 @@
                 <th>도시</th>
                 <th>주소</th>
                 <th>우편번호</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -23,6 +24,11 @@
                 <td th:text="${member.address?.city}"></td>
                 <td th:text="${member.address?.street}"></td>
                 <td th:text="${member.address?.zipcode}"></td>
+                <td>
+                    <!-- (templates)/items/itemList.html 코드 참고 -->
+                    <a href="#" th:href="@{/members/{id}/edit (id=${member.id})}"
+                       class="btn btn-primary" role="button">수정</a>
+                </td>
             </tr>
             </tbody>
         </table>

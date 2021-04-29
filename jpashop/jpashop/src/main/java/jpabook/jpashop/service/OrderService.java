@@ -93,6 +93,6 @@ public class OrderService {
      * 검색 : 회원명, 주문상태로 주문 검색 (동적 Query 필요!)
      */
     public List<Order> findOrders(OrderSearch orderSearch) {
-        return orderRepository.findAll(orderSearch);
+        return orderRepository.findAllByString(orderSearch);
     }
 }

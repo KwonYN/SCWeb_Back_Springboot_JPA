@@ -36,7 +36,7 @@ public class OrderRepository {
      * 검색 : 동적 Query 필요! (회원명, 주문상태로 주문 검색)
      */
     // 첫 번재 방법 : 
-    public List<Order> findAll(OrderSearch orderSearch) {
+    public List<Order> findAllByString(OrderSearch orderSearch) {
 
         String jpql = "select o from Order o join o.member m";
         boolean isFirstCondition = true;
@@ -50,7 +50,7 @@ public class OrderRepository {
             } else {
                 jpql += " and";
             }
-            jpql += "o.status := status";
+            jpql += " o.status = :status";
         }
         // 회원 이름 검색
         if(StringUtils.hasText(orderSearch.getMemberName())) {
@@ -60,7 +60,7 @@ public class OrderRepository {
             } else {
                 jpql += " and";
             }
-            jpql += "m.name like :name";
+            jpql += " m.name like :name";
         }
 
         // Query 생성
