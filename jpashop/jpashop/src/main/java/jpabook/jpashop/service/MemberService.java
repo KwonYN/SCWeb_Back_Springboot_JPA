@@ -62,4 +62,16 @@ public class MemberService {
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
     }
+
+
+    /**
+     * 회원 수정 : API를 통해 받은 id를 통해 해당 Member 객체를 찾고,
+     *           (request 내의)name으로 수정해줌
+     *          ▶ 변경 감지 (한 transaction 내에서의 변화이므로)
+     */
+    @Transactional // 변경 감지
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+        member.setName(name);
+    }
 }

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class Member {
     // + 코드에서는 그냥 id라고 해도 클래스가 있고, 객체.id 이런 식으로 접근하기 때문에 안 헷갈림
     // 하지만 Table은 달라... (실무 관점) 찾기 쉽지 않고, Join하기에도 어려워.. → 그래서 member_id와 같은 식으로 지음
 
+    // @NotEmpty : Entity를 노출시키지 않고, DTO에서 Validation을 걸어주면 됨!
     private String name;
 
     @Embedded   // 원래 @Embedded나 Address 클래스의 @Embeddable 둘 중 하나만 있어도 된다고는 함!
