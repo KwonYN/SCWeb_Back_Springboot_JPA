@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jpabook.jpashop.domain.item.Item;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class OrderItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)  // 하나의 Order에는 여러 OrderItem을 가질 수 있지만,
     // OrderItem은 하나의 Order만을 가질 수 있음!! (여러 개를 갖는다? 그럼 내 주문에 다른 사람 주문이 껴있다? ㅅㅂ;)
     @JoinColumn(name = "order_id")

@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +25,7 @@ public class Member {
     @Embedded   // 원래 @Embedded나 Address 클래스의 @Embeddable 둘 중 하나만 있어도 된다고는 함!
     private Address address;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member") // 연관관계의 주인 아님. Order table에 있는 "member"에 의해 맵핑됨..;
     private List<Order> orders = new ArrayList<>();
     // + @JoinColumn(~~)와 @xTox(mappedBy=~~)는 서로 한 쌍!!

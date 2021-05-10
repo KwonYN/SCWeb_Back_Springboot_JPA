@@ -1,7 +1,6 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -152,4 +151,25 @@ public class OrderRepository {
         return member.name.like(nameCond);
     }
      */
+
+    /**
+     * 주문 엔티티 조회 : fetch join
+     * (조회 후 return된 주문 엔티티 List는 DTO로 변환됨)
+     */
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery("select o from Order o"
+                        + " join fetch o.member m"
+                        + " join fetch o.delivery d", Order.class)
+                .getResultList();
+        /*
+            한 번의 쿼리로
+            order뿐만 아니라 관련된 member, delivery를
+            join하여 한 번에 다 땡겨옴.
+            &&
+            fetch join으로 이미 order의 member와 order의 delivery를 이미 조회한 상태이므로
+            LAZY (지연 로딩) 아님!!
+            그러므로 proxy 객체를 강제로 초기화하여 값 땡겨오고 하는 방식 X!!
+                    오히려 진짜 member, delivery 객체를 조회하는 거라고 함!;
+         */
+    }
 }
